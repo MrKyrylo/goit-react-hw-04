@@ -1,4 +1,4 @@
-import ImageCard from "./ImageCard/ImageCard";
+import ImageCard from "../ImageCard/ImageCard";
 
 export default function ImageGallery({ serverResponse, openModal }) {
   return (
