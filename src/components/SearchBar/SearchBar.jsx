@@ -2,7 +2,7 @@ import { Formik, Form, Field } from "formik";
 // , ErrorMessage
 import { Toaster } from "react-hot-toast";
 
-export default function SearchForm({ handleSubmit }) {
+export default function SearchBar({ handleSubmit }) {
   return (
     <Formik
       initialValues={{
