@@ -1,5 +1,4 @@
-import { Formik, Form, Field } from "formik";
-// , ErrorMessage
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Toaster } from "react-hot-toast";
 
 export default function SearchBar({ handleSubmit }) {
@@ -8,18 +7,31 @@ export default function SearchBar({ handleSubmit }) {
       initialValues={{
         keyWord: "",
       }}
-      onSubmit={handleSubmit}
+      validate={(values) => {
+        const errors = {};
+        if (!values.keyWord.trim()) {
+          errors.keyWord = "Please enter a keyword";
+        }
+        return errors;
+      }}
+      onSubmit={(values, { resetForm }) => {
+        handleSubmit(values);
+        resetForm();
+      }}
     >
       <Form className="footer">
-        <button type="submit">Search</button>
-        <Toaster />
         <Field
           type="text"
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
           name="keyWord"
-        ></Field>
+        />
+        <ErrorMessage name="keyWord" component="div" className="error-message" />
+
+        <button type="submit">Search</button>
+
+        <Toaster position="bottom-center" />
       </Form>
     </Formik>
   );
